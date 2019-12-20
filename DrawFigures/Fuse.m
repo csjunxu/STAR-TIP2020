@@ -1,0 +1,13 @@
+clear;
+Original_image_dir  =    './';
+fpath = fullfile(Original_image_dir, '29*L2.png');
+im_dir  = dir(fpath);
+im_num = length(im_dir);
+Im1 = im2double(imread(fullfile(Original_image_dir, im_dir(1).name)));
+Im2 = im2double(imread(fullfile(Original_image_dir, im_dir(2).name)));
+RIm1 = imresize(Im1, 0.5);
+RIm2 = imresize(Im2, 0.5);
+RIm = zeros(size(RIm1));
+RIm(:,1:125)=RIm1(:,1:125);
+RIm(:,126:250)=RIm2(:,126:250);
+imwrite(RIm, ['resize_29_IR_STAR_L2.png']);

@@ -1,0 +1,24 @@
+
+S-CIELAB version 1.1.1.
+-------------------------------------------------------------------
+
+More information about this package can be found at the web page:
+
+http://white.stanford.edu/html/xmei/scielab.html
+
+
+
+Changes made in version 1.1.1:
+
+There were some bugs on matrix indexing since I changed the scielab
+code to be compatible with Matlab version 5. This was fixed. Thanks to
+Yossi Rubner for pointing this out.
+
+Changes made in verision 1.1:
+
+Compatibility with Matlab version 5 was added. A few miscellaneous
+bugs were fixed.
+
+
+--------------------------------------------------------------------
+Xuemei Zhang 4/29/98
