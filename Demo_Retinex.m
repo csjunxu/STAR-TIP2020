@@ -7,47 +7,47 @@ clc;clear;
 %%% methods
 addpath(genpath('methods'));
 %%% choose test dataset
-datasets = {'LowLight', 'NPE', 'VV', 'NASA', 'LDR'};
+datasets = {'Figure4', '35images', '200images'};
 Testset = datasets{1}; % select test dataset
-Test_dir  = fullfile('/home/csjunxu/Paper/Enhancement/Dataset', ['Images_' Testset]);
+Test_dir = fullfile('C:\Users\csjunxu\Desktop\star\', Testset);
 %%% read images
-ext         =  {'*.jpg','*.jpeg','*.JPG','*.png','*.bmp'};
+ext         =  {'*.jpg','*.jpeg','*.png','*.bmp'};
 im_dir   =  [];
 for i = 1 : length(ext)
     im_dir = cat(1,im_dir, dir(fullfile(Test_dir,ext{i})));
 end
 im_num = length(im_dir);
- 
+
 %%% save results
-N=32;
+N=4;
 name = regexp(im_dir(N).name, '\.', 'split');
 Im=im2double( imread(fullfile(Test_dir, im_dir(N).name)) );
-write_dir = './';
+write_dir = '../STAR-Results/';
 if ~isdir(write_dir)
     mkdir(write_dir);
 end
 imwrite(Im, [write_dir name{1} '.png'])
 
-% STAR   
+% STAR
 method = 'STAR';
 alpha = 0.001;
-beta = 0.0001;  
-for pI = [1.5] 
-    for pR = [1]  
+beta = 0.0001;
+for pI = [1]
+    for pR = [1]
         [I, R] = STAR(Im, alpha, beta, pI, pR);
         hsv = rgb2hsv(Im);
         subplot(2,2,1); imshow(I);  title('Illumination (Gray)');
-        imwrite(I, [write_dir name{1} '_I_Gray_' method '_pI' num2str(pI) '_pR' num2str(pR) '.png'])
+        %imwrite(I, [write_dir name{1} '_I_Gray_' method '_pI' num2str(pI) '_pR' num2str(pR) '.png'])
         hsv(:,:,3) = I;
         subplot(2,2,2); imshow(hsv2rgb(hsv));  title('Illumination (RGB)');
         imwrite(hsv2rgb(hsv), [write_dir name{1} '_I_RGB_' method '_pI' num2str(pI) '_pR' num2str(pR) '.png'])
         subplot(2,2,3); imshow(I);  title('Reflectance (Gray)');
-        imwrite(R, [write_dir name{1} '_R_Gray_' method '_pI' num2str(pI) '_pR' num2str(pR) '.png'])
+        %imwrite(R, [write_dir name{1} '_R_Gray_' method '_pI' num2str(pI) '_pR' num2str(pR) '.png'])
         hsv(:,:,3) = R;
         subplot(2,2,4); imshow(hsv2rgb(hsv));  title('Reflectance (RGB)');
         imwrite(hsv2rgb(hsv), [write_dir name{1} '_R_RGB_' method '_pI' num2str(pI) '_pR' num2str(pR) '.png'])
     end
-end     
+end
 
 % JIEP ICCV2017
 method = 'JieP';

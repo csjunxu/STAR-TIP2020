@@ -16,7 +16,15 @@ imwrite(image,imname,'png');
 %% illumiance
 h  = 160;
 w  = 80;
-% ours
+
+% baseline
+image = imread([im '_I_RGB_STAR_pI1.7_pR0.1.png']);
+illuminance = imresize(image(1:ll,ii:ll+ii-1,:), scale);
+[ outputimage ] = boxandresize( illuminance, h,w,s, f,lr);
+imname = sprintf('%s_%s_I_STAR.png','rs',im);
+imwrite(outputimage,imname,'png');
+
+% STAR
 image = imread([im '_I_RGB_STAR_pI1.7_pR0.1.png']);
 illuminance = imresize(image(1:ll,ii:ll+ii-1,:), scale);
 [ outputimage ] = boxandresize( illuminance, h,w,s, f,lr);
@@ -40,7 +48,15 @@ imwrite(outputimage,imname,'png');
 %% reflectance
 h  = 60;
 w  = 50;
-% ours
+
+% baseline
+image = imread([im '_I_RGB_STAR_pI1.7_pR0.1.png']);
+illuminance = imresize(image(1:ll,ii:ll+ii-1,:), scale);
+[ outputimage ] = boxandresize( illuminance, h,w,s, f,lr);
+imname = sprintf('%s_%s_I_STAR.png','rs',im);
+imwrite(outputimage,imname,'png');
+
+% STAR
 image = imread([im '_R_RGB_STAR_pI1.7_pR0.1.png']);
 reflectance = imresize(image(1:ll,ii:ll+ii-1,:), scale);
 [ outputimage ] = boxandresize( reflectance, h,w,s, f,lr);
