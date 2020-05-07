@@ -6,7 +6,7 @@
 clc;clear;
 %%% methods
 addpath(genpath('methods'));
-%%% choose test dataset
+%%% choose test dataset  
 datasets = {'Figure4', '35images', '200images'};
 Testset = datasets{1}; % select test dataset
 Test_dir = fullfile('C:\Users\csjunxu\Desktop\star\', Testset);
