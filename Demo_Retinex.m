@@ -53,8 +53,8 @@ end
 method = 'STAR';
 alpha = 0.001;
 beta = 0.0001;
-for pI = [1]
-    for pR = [1]
+for pI = [1.5]
+    for pR = [0.5]
         [I, R] = STAR(Im, alpha, beta, pI, pR);
         hsv = rgb2hsv(Im);
         subplot(2,2,1); imshow(I);  title('Illumination (Gray)');
